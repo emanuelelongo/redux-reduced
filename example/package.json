@@ -1,0 +1,21 @@
+{
+  "name": "example",
+  "version": "1.0.0",
+  "description": "Example app for redux-direct",
+  "main": "index.js",
+  "scripts": {
+    "start": "next -p 3001"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^4.1.2",
+    "next-connect-redux": "^0.1.5",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "redux-devtools-extension": "^2.13.2",
+    "redux-direct": "^1.0.0"
+  }
+}
