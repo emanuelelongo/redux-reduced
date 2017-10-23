@@ -5,7 +5,9 @@
   "main": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "build": "babel src -d dist --copy-files",
+    "test:coverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "build": "babel src -d dist --copy-files --ignore test",
     "postinstall": "npm run build"
   },
   "repository": {
