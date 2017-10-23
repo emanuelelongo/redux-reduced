@@ -1,8 +1,8 @@
-import { reduxDirectMiddleware, wrapReducers } from '..'
+import { middleware, wrapReducers } from '..'
 
 describe('index', () => {
     it('should export middleware', () => {
-        expect(reduxDirectMiddleware).toBeDefined()
+        expect(middleware).toBeDefined()
     })
 
     it('should export wrapReducers', () => {

@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux'
-import { wrapReducers } from 'redux-direct'
+import { wrapReducers } from 'redux-reduced'
 import counter from './counter'
 import contact from './contact'
 

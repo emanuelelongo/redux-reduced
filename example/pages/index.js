@@ -1,5 +1,5 @@
 import React from 'react'
-import { wrapAction } from 'redux-direct'
+import { wrapAction } from 'redux-reduced'
 import { connect } from '../store'
 import { setNameAndSurname, setFoo } from '../actions'
 

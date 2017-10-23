@@ -10,9 +10,9 @@ export default store => next => action => {
                 : { ...update }
     
         store.dispatch({
-            type: actionType || 'REDUX_DIRECT',
+            type: actionType || 'REDUX_REDUCED',
             payload: changes,
-            meta: { REDUX_DIRECT: true }
+            meta: { REDUX_REDUCED: true }
         })
     }
     return action(store.dispatch, store.getState, setState)

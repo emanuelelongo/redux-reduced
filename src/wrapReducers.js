@@ -1,6 +1,6 @@
 function wrap(reducer, key) {
     return (state, action) => {
-        if(!action.meta || !action.meta.REDUX_DIRECT || !action.payload.hasOwnProperty(key)) {
+        if(!action.meta || !action.meta.REDUX_REDUCED || !action.payload.hasOwnProperty(key)) {
             return reducer(state, action)
         }
         

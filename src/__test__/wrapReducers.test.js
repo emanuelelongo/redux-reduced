@@ -14,7 +14,7 @@ describe('wrapReducers', () => {
 
     describe('wrapped reducer', () => {
 
-        it('should call original reducer if is not a REDUX_DIRECT actions', () => {
+        it('should call original reducer if is not a REDUX_REDUCED actions', () => {
             const reducers = {
                 foo: jest.fn(),
                 bar: jest.fn()
@@ -35,12 +35,12 @@ describe('wrapReducers', () => {
     
             const wrappedReducers = wrapReducers(reducers)
             const state = {}
-            const action = { meta: { REDUX_DIRECT: true }, payload: {bar: 'bar'} }
+            const action = { meta: { REDUX_REDUCED: true }, payload: {bar: 'bar'} }
             wrappedReducers.foo(state, action)
             expect(reducers.foo).toHaveBeenCalledWith(state, action)
         })
 
-        it('should not call original reducer for REDUX_DIRECT actions', () => {
+        it('should not call original reducer for REDUX_REDUCED actions', () => {
             const reducers = {
                 foo: jest.fn(),
                 bar: jest.fn()
@@ -48,7 +48,7 @@ describe('wrapReducers', () => {
     
             const wrappedReducers = wrapReducers(reducers)
             const state = {}
-            const action = { meta: { REDUX_DIRECT: true }, payload: {foo: 'foo'} }
+            const action = { meta: { REDUX_REDUCED: true }, payload: {foo: 'foo'} }
             wrappedReducers.foo(state, action)
             expect(reducers.foo).not.toHaveBeenCalled()
         })
@@ -61,7 +61,7 @@ describe('wrapReducers', () => {
     
             const wrappedReducers = wrapReducers(reducers)
             const state = "STATE"
-            const action = { meta: { REDUX_DIRECT: true }, payload: {foo: 'foo'} }
+            const action = { meta: { REDUX_REDUCED: true }, payload: {foo: 'foo'} }
             const newState = wrappedReducers.foo(state, action)
             expect(newState).toBe('foo')
         })
@@ -77,7 +77,7 @@ describe('wrapReducers', () => {
                  value: 'old',
                  other: 'unchanged'
             }
-            const action = { meta: { REDUX_DIRECT: true }, payload: {foo: {value: 'new'}} }
+            const action = { meta: { REDUX_REDUCED: true }, payload: {foo: {value: 'new'}} }
             const newState = wrappedReducers.foo(state, action)
             expect(newState).toMatchObject({value: 'new', other: 'unchanged'})
         })

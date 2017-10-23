@@ -25,7 +25,7 @@ describe('middleware', () => {
 
     describe('setState', () => {
 
-        it('should dispatch a REDUX_DIRECT action with changes in payload', () => {
+        it('should dispatch a REDUX_REDUCED action with changes in payload', () => {
             const getState = jest.fn().mockImplementation(() => ({
                 foo: 'bar'
             }))
@@ -39,9 +39,9 @@ describe('middleware', () => {
             const update = {fuz: 'baz'}
             setState(update)
             expect(store.dispatch).toHaveBeenCalledWith({
-                type: 'REDUX_DIRECT',
+                type: 'REDUX_REDUCED',
                 payload: {fuz: 'baz'},
-                meta: { REDUX_DIRECT: true }
+                meta: { REDUX_REDUCED: true }
             })
         })
 
@@ -62,7 +62,7 @@ describe('middleware', () => {
             expect(store.dispatch).toHaveBeenCalledWith({
                 type: 'CUSTOM_ACTION_TYPE',
                 payload: {fuz: 'baz'},
-                meta: { REDUX_DIRECT: true }
+                meta: { REDUX_REDUCED: true }
             })
         })
 
@@ -81,9 +81,9 @@ describe('middleware', () => {
             setState(update)
             expect(update).toHaveBeenCalledWith({foo: 'bar'})
             expect(store.dispatch).toHaveBeenCalledWith({
-                type: 'REDUX_DIRECT',
+                type: 'REDUX_REDUCED',
                 payload: {fuz: 'baz'},
-                meta: { REDUX_DIRECT: true }
+                meta: { REDUX_REDUCED: true }
             })
         })
     })
