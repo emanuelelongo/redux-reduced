@@ -1,6 +1,6 @@
 {
   "name": "redux-reduced",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Redux plugin that simplify the way you write actions",
   "main": "dist/index.js",
   "scripts": {
@@ -8,7 +8,8 @@
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "build": "babel src -d dist --copy-files --ignore test",
-    "postinstall": "npm run build"
+    "prepublish": "npm run build",
+    "clean": "rm -rf node_modules && rm -rf dist && rm -rf coverage && rm -rf example/.next && rm -rf example/node_modules"
   },
   "repository": {
     "type": "git",
@@ -27,12 +28,12 @@
     "url": "https://github.com/emanuelelongo/redux-reduced/issues"
   },
   "homepage": "https://github.com/emanuelelongo/redux-reduced#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1"
-  },
-  "devDependencies": {
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
     "codecov": "^3.0.0",
     "jest": "^21.2.1"
   },
