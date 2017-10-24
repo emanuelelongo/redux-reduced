@@ -18,7 +18,7 @@ function wrap(reducer, key) {
 }
 
 function unmanagedChangesReducer(state = {}, action) {
-    if(action.meta && action.meta['REDUX_REDUCED']) {
+    if(action && action.meta && action.meta['REDUX_REDUCED']) {
         return {
             ...state,
             ...pick(action.payload, action.meta['REDUX_REDUCED'].unmanaged)
@@ -30,7 +30,7 @@ function unmanagedChangesReducer(state = {}, action) {
 const fakeReducer = initial_state => (state, action) => state || initial_state
 
 export default function wrapReducer(reducers) {
-    const wrappedReducers = {}  
+    const wrappedReducers = {}
     const reducerKeys = Object.keys(reducers);
     for (let i = 0; i < reducerKeys.length; i++) {
         if(typeof reducers[reducerKeys[i]] === "function") {
