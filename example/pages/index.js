@@ -1,56 +1,75 @@
 import React from 'react'
 import { wrapAction } from 'redux-reduced'
 import { connect } from '../store'
-import { setNameAndSurname, setFoo } from '../actions'
+import { 
+    setSimpleProperty,
+    setComplexProperty,
+    setUnmanagedProperty,
+    setMultipleProperties,
+    increment,
+    decrement
+} from '../actions'
 
 class App extends React.Component {
 
     renderStyle() {
         return (
             <style>{"\
-                .section{\
-                    border:1px solid gray;\
-                    width: 400px;\
-                    padding: 10px;\
-                }\
+                body { font-family: Helvetica, Arial, Sans-Serif }\
+                .box{ border:1px solid gray; width: 400px; padding: 30px; }\
+                button { float: right; font-size:14px; font-weight: bold }\
             "}</style>
         )
     }
 
-    renderCurrentState() {
+    simplePropertyExample() {
         return (
-            <div className="section">
-                <h3>Current state</h3>
-                Name: {this.props.contact.name}<br/>
-                Surname: {this.props.contact.surname}<br/>
+            <div className="box">
+                <h3> Simple property example</h3>
+                Value: {this.props.simple}<br/>
+                <button onClick={() => this.props.setSimpleProperty("Hello!")}>SET</button>
             </div>
         )
     }
 
-    renderNameSurname() {
+    complexPropertyExample() {
         return (
-            <div className="section">
-                <h3>Set values</h3>
-                Name <br/>
-                <input type="text" ref={i => this.nameInput = i } /><br />
-                Surname <br/>
-                <input type="text" ref={i => this.surnameInput = i } /><br/>
-                <button onClick={() => this.props.setNameAndSurname(this.nameInput.value, this.surnameInput.value)}>SET</button>
+            <div className="box">
+                <h3> Complex property example</h3>
+                Name: {this.props.complex.name}<br/>
+                Surname: {this.props.complex.surname}<br/>
+                <button onClick={() => this.props.setComplexProperty("Emanuele", "Longo")}>SET</button>
             </div>
         )
     }
 
-    renderUnsupported() {
+    unmanagedPropertyExample() {
         return (
-            <div className="section">
-                <b>Note</b> <br/>
-                <i>At the moment you can't set a state property not yet initialized by reducers</i>
+            <div className="box">
+                <h3>Unmanaged property example</h3>
+                Foo: {this.props.foo}<br/>
                 <br />
-                <br />
-                <i>So, for example this has no effetcs</i><br/>
-                <br/>
-                Foo: {this.props.foo || 'undefined'}<br/>
-                <button onClick={() => this.props.setFoo('bar')}>Bar</button>
+                <button onClick={() => this.props.setUnmanagedProperty("bar")}>SET</button>
+            </div>
+        )
+    }
+
+    multiplePropertiesExample() {
+        return (
+            <div className="box">
+                <h3>Multiple properties example</h3>
+                <button onClick={() => this.props.setMultipleProperties()}>CLEAR</button>
+            </div>
+        )
+    }
+
+    oldStandardReducerExample() {
+        return (
+            <div className="box">
+                <h3>Old standard reducer example</h3>
+                Counter: { this.props.counter }
+                <button onClick={() => this.props.increment(1)}>+</button>
+                <button onClick={() => this.props.decrement(1)}>-</button>
             </div>
         )
     }
@@ -59,11 +78,15 @@ class App extends React.Component {
         return (
             <div>
                 { this.renderStyle() }
-                { this.renderCurrentState() }
+                { this.simplePropertyExample() }
                 <br/>
-                { this.renderNameSurname() }
+                { this.complexPropertyExample() }
                 <br/>
-                { this.renderUnsupported()}
+                { this.unmanagedPropertyExample()}
+                <br/>
+                { this.multiplePropertiesExample()}
+                <br/>
+                { this.oldStandardReducerExample()}
             </div>
         )
     }
@@ -71,9 +94,11 @@ class App extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        contact: state.contact,
-        foo: state.foo
+        simple: state.simpleProperty,
+        complex: state.complexProperty,
+        foo: state.global.foo,
+        counter: state.oldStandardReducer.counter
     }
 }
 
-export default connect(mapStateToProps, { setNameAndSurname, setFoo })(App)
+export default connect(mapStateToProps, { setSimpleProperty, setComplexProperty, setUnmanagedProperty, setMultipleProperties, increment, decrement })(App)

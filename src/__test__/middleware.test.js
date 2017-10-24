@@ -36,12 +36,32 @@ describe('middleware', () => {
             middleware(store)(next)(action)
             const setState = action.mock.calls[0][2]
 
+            const update = {foo: 'baz'}
+            setState(update)
+            expect(store.dispatch).toHaveBeenCalledWith({
+                type: 'REDUX_REDUCED',
+                payload: {foo: 'baz'},
+                meta: {'REDUX_REDUCED': {unmanaged: []}}
+            })
+        })
+
+        it('should dispatch a REDUX_REDUCED action with unmanaged property meta', () => {
+            const getState = jest.fn().mockImplementation(() => ({
+                foo: 'bar'
+            }))
+            const store = { dispatch: jest.fn(), getState }
+            const next = jest.fn()
+            const action = jest.fn()
+
+            middleware(store)(next)(action)
+            const setState = action.mock.calls[0][2]
+
             const update = {fuz: 'baz'}
             setState(update)
             expect(store.dispatch).toHaveBeenCalledWith({
                 type: 'REDUX_REDUCED',
                 payload: {fuz: 'baz'},
-                meta: { REDUX_REDUCED: true }
+                meta: {'REDUX_REDUCED': {unmanaged: ['fuz']}}
             })
         })
 
@@ -56,13 +76,13 @@ describe('middleware', () => {
             middleware(store)(next)(action)
             const setState = action.mock.calls[0][2]
 
-            const update = {fuz: 'baz'}
+            const update = {foo: 'baz'}
             const actionType = 'CUSTOM_ACTION_TYPE'
             setState(update, actionType)
             expect(store.dispatch).toHaveBeenCalledWith({
                 type: 'CUSTOM_ACTION_TYPE',
-                payload: {fuz: 'baz'},
-                meta: { REDUX_REDUCED: true }
+                payload: {foo: 'baz'},
+                meta: {'REDUX_REDUCED': {unmanaged: []}}
             })
         })
 
@@ -77,13 +97,13 @@ describe('middleware', () => {
             middleware(store)(next)(action)
             const setState = action.mock.calls[0][2]
 
-            const update = jest.fn().mockImplementation(() =>({fuz: 'baz'}))
+            const update = jest.fn().mockImplementation(() =>({foo: 'baz'}))
             setState(update)
             expect(update).toHaveBeenCalledWith({foo: 'bar'})
             expect(store.dispatch).toHaveBeenCalledWith({
                 type: 'REDUX_REDUCED',
-                payload: {fuz: 'baz'},
-                meta: { REDUX_REDUCED: true }
+                payload: {foo: 'baz'},
+                meta: {'REDUX_REDUCED': {unmanaged: []}}
             })
         })
     })

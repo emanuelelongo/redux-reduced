@@ -1,9 +1,11 @@
 import { combineReducers } from 'redux'
 import { wrapReducers } from 'redux-reduced'
-import contact from './contact'
+import oldStandardReducer from './oldStandardReducer'
 
 const reducers = combineReducers(wrapReducers({
-    contact
+    oldStandardReducer,
+    simpleProperty: "",
+    complexProperty: {},
 }))
 
 export default reducers
