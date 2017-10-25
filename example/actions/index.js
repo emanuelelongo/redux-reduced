@@ -1,5 +1,4 @@
 export { default as setSimpleProperty } from './setSimpleProperty'
-export { default as setComplexProperty } from './setComplexProperty'
 export { default as setUnmanagedProperty } from './setUnmanagedProperty'
 export { default as setMultipleProperties } from './setMultipleProperties'
 export { default as increment } from './increment'

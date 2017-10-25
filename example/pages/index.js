@@ -3,7 +3,6 @@ import { wrapAction } from 'redux-reduced'
 import { connect } from '../store'
 import { 
     setSimpleProperty,
-    setComplexProperty,
     setUnmanagedProperty,
     setMultipleProperties,
     increment,
@@ -28,17 +27,6 @@ class App extends React.Component {
                 <h3> Simple property example</h3>
                 Value: {this.props.simple}<br/>
                 <button onClick={() => this.props.setSimpleProperty("Hello!")}>SET</button>
-            </div>
-        )
-    }
-
-    complexPropertyExample() {
-        return (
-            <div className="box">
-                <h3> Complex property example</h3>
-                Name: {this.props.complex.name}<br/>
-                Surname: {this.props.complex.surname}<br/>
-                <button onClick={() => this.props.setComplexProperty("Emanuele", "Longo")}>SET</button>
             </div>
         )
     }
@@ -80,8 +68,6 @@ class App extends React.Component {
                 { this.renderStyle() }
                 { this.simplePropertyExample() }
                 <br/>
-                { this.complexPropertyExample() }
-                <br/>
                 { this.unmanagedPropertyExample()}
                 <br/>
                 { this.multiplePropertiesExample()}
@@ -95,10 +81,9 @@ class App extends React.Component {
 function mapStateToProps(state) {
     return {
         simple: state.simpleProperty,
-        complex: state.complexProperty,
         foo: state.global.foo,
         counter: state.oldStandardReducer.counter
     }
 }
 
-export default connect(mapStateToProps, { setSimpleProperty, setComplexProperty, setUnmanagedProperty, setMultipleProperties, increment, decrement })(App)
+export default connect(mapStateToProps, { setSimpleProperty, setUnmanagedProperty, setMultipleProperties, increment, decrement })(App)

@@ -4,8 +4,7 @@ import oldStandardReducer from './oldStandardReducer'
 
 const reducers = combineReducers(wrapReducers({
     oldStandardReducer,
-    simpleProperty: "",
-    complexProperty: {},
+    simpleProperty: ""
 }))
 
 export default reducers

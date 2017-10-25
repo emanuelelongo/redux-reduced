@@ -16,7 +16,7 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
-    "redux-reduced": "^1.0.4"
+    "redux-reduced": "^1.0.6"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
