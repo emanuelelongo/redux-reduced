@@ -6,6 +6,7 @@ Makes it easier to modify redux state. No reducers, unless you really need them.
 [![Build Status](https://travis-ci.org/emanuelelongo/redux-reduced.svg?branch=master)](https://travis-ci.org/emanuelelongo/redux-reduced)
 [![codecov](https://codecov.io/gh/emanuelelongo/redux-reduced/branch/master/graph/badge.svg)](https://codecov.io/gh/emanuelelongo/redux-reduced)
 [![Maintainability](https://api.codeclimate.com/v1/badges/9038ed295a7ece88b482/maintainability)](https://codeclimate.com/github/emanuelelongo/redux-reduced/maintainability)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fd8f149737e74d1cbcceb48a05200127)](https://www.codacy.com/app/emanuelelongo/redux-reduced?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=emanuelelongo/redux-reduced&amp;utm_campaign=Badge_Grade)
 
 ## Motivation
 You know, React/Redux with its actions and reducers is full of boilerplate and sometimes you just want to set one property in the state!
